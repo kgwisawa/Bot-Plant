@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "bot-plant-final_project",
+    "slug": "bot-plant-final_project",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "bot-plant-final_project"
+}
