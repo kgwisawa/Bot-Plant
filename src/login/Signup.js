@@ -6,44 +6,47 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { React, useEffect, useState } from "react";
-import inputStyle from "../style/input-style";
-import textStyle from "../style/text-style";
+
+// * Import Firebase * //
 import { auth } from "../service/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../service/firebase";
-import { doc,setDoc } from 'firebase/firestore';
+import { doc, setDoc } from "firebase/firestore";
+
+// * Import Style-text * //
+import inputStyle from "../style/input-style";
+import textStyle from "../style/text-style";
 
 const Signup = ({ navigation }) => {
+  // * State variable * //
   const [firstname, setefirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
-
   const [alerttxt, setalerttxt] = useState("");
 
+  // ? Create Account Function ?//
   function Create() {
-    
-    const myDoc = doc(db, "User", email );
+    const myDoc = doc(db, "User", email);
     const data = {
-      firstname:firstname,
-      lastname:lastname,
-      email:email
-    }
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+    };
 
     setDoc(myDoc, data)
-    // Handling Promises
-    .then(() => {
-      
-      // MARK: Success
-    })
-    .catch((error) => {
-      // MARK: Failure
-      alert(error.message)
-    })
-
+      // Handling Promises
+      .then(() => {
+        // MARK: Success
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message);
+      });
   }
- 
+
+  // ? CreateAccount ? //
   const handleCreateAccount = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -52,16 +55,14 @@ const Signup = ({ navigation }) => {
         Create();
         const user = userCredential.user;
         console.log(user);
-        
+
         navigation.navigate("Signin");
       })
       .catch((error) => {
         alert(error);
       });
-
-   
   };
-  // ? check confirm password === password
+  // ? check confirm password === password ? //
   function checkpasswordC(text) {
     if (text !== password) {
       setalerttxt("Password and confirm password don't match");
@@ -127,12 +128,13 @@ const Signup = ({ navigation }) => {
         <View style={styles.alertcontent}>
           <Text style={textStyle.alert}>{alerttxt}</Text>
         </View>
+
+        {/* TouchableOpacity Create account */}
         <TouchableOpacity
           style={styles.login}
           onPress={() => {
             if (password === confirmpassword) {
-              handleCreateAccount(email, password)
-              
+              handleCreateAccount(email, password);
             } else {
               alert("Password and confirm password don't match");
             }
@@ -140,8 +142,6 @@ const Signup = ({ navigation }) => {
         >
           <Text style={[textStyle.login, { color: "#FFF" }]}> Sign Up</Text>
         </TouchableOpacity>
-
-
 
         <View style={styles.acontent}>
           <Text style={textStyle.account_title}>have an account?</Text>

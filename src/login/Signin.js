@@ -6,27 +6,28 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { React, useEffect, useState } from "react";
-import inputStyle from "../style/input-style";
-import textStyle from "../style/text-style";
+
+// * Import Firebase * //
 import { auth } from "../service/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+// * Import Style-text * //
+import inputStyle from "../style/input-style";
+import textStyle from "../style/text-style";
 
-const Signin = ({navigation}) => {
+const Signin = ({ navigation }) => {
+  // * State variable * //
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  
 
+  // ? SignIn Function ?//
   const handleSignIn = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Signed In!");
+        // console.log("Signed In!");
         alert("Signed In!");
         const user = userCredential.user;
-        console.log(user);
-
-        // alert(user.email)
-        // navigation.navigate("Navigationmain", { email: user.email });
+        // console.log(user);
       })
       .catch((error) => {
         alert(error);
@@ -53,7 +54,7 @@ const Signin = ({navigation}) => {
           value={password}
           placeholder={"Password"}
         />
-
+        {/* TouchableOpacity login */}
         <TouchableOpacity
           style={styles.login}
           onPress={() => {
@@ -65,14 +66,14 @@ const Signin = ({navigation}) => {
 
         <View style={styles.acontent}>
           <Text style={textStyle.account_title}>Don't have an account?</Text>
+
+          {/* TouchableOpacity Signup */}
           <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
             <Text style={[textStyle.account_title, { color: "salmon" }]}>
               {" "}
               Sign Up
             </Text>
           </TouchableOpacity>
-
-
         </View>
       </View>
     </View>

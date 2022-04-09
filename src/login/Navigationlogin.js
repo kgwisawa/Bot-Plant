@@ -2,7 +2,7 @@ import { View, Text , ActivityIndicator} from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-
+// * Import Screens * //
 import Signin from "./Signin";
 import Signup from "./Signup";
 
