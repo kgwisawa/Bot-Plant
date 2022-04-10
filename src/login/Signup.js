@@ -44,6 +44,20 @@ const Signup = ({ navigation }) => {
         // MARK: Failure
         alert(error.message);
       });
+
+      const myDoc2 = doc(db, "User", email ,"Garden","detail");
+      const data2 = {
+        status: false,
+      };
+      setDoc(myDoc2, data2)
+        // Handling Promises
+        .then(() => {
+          // MARK: Success
+        })
+        .catch((error) => {
+          // MARK: Failure
+          alert(error.message);
+        });
   }
 
   // ? CreateAccount ? //

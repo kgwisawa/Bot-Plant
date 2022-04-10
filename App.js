@@ -43,6 +43,7 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     HAIDUO1H: require("./assets/fonts/HAIDUO1H.ttf"),
     HAIDUO1T: require("./assets/fonts/HAIDUO1T.ttf"),
+    Opun_Regular: require("./assets/fonts/Opun-Regular.ttf"),
   });
 
   if (!fontsLoaded) {

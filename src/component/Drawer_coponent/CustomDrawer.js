@@ -75,7 +75,7 @@ const CustomDrawer = (props) => {
           <View style={styles.left_title}>
             <Image
               style={styles.Logoprofile}
-              source={require("../../../assets/icon/profile.png")}
+              source={require("../../../assets/icon/icon_drawer/profile.png")}
             />
           </View>
 
@@ -87,7 +87,7 @@ const CustomDrawer = (props) => {
             >
               <Image
                 style={styles.Logo}
-                source={require("../../../assets/icon/gmail.png")}
+                source={require("../../../assets/icon/icon_drawer/gmail.png")}
               />
               <Text style={textStyle.email_drawer}> {props.email}</Text>
             </View>
