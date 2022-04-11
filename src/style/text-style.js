@@ -106,6 +106,17 @@ export default StyleSheet.create({
     fontFamily: "Opun_Regular",
     fontSize: 18,
     marginLeft:5
+  },
+  title_shop_tack:{
+    fontFamily: "Opun_Regular",
+    fontSize: 8,
+
+  }
+  ,
+  optional:{
+    fontFamily: "Opun_Regular",
+    fontSize: 30,
+    color: "#abb8c3"
   }
 
 });

@@ -100,7 +100,7 @@ const Signup = ({ navigation }) => {
         {/* Input fristname */}
         <TextInput
           style={[inputStyle.input, styles.email]}
-          onChangeText={(text) => setefristname(text)}
+          onChangeText={(text) => setefirstname(text)}
           value={firstname}
           placeholder={"Frist name"}
         />

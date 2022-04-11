@@ -68,7 +68,13 @@ const Add = ( { navigation, route }) => {
     function CreatePlant() {
       const myDoc = doc(db, "User", route.params.email ,"Garden","detail");
       let sum = [];
-      sum = datagarden;
+
+      if(datagarden !== undefined){
+        sum = datagarden;
+        alert("gg")
+      }
+     
+
       const data = {
         name: name,
         type: value,

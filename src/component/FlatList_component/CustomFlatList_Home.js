@@ -21,6 +21,8 @@ const CustomFlatList_Home = (props) => {
   const [search, setsearch] = useState("");
   const [data, setdata] = useState([]);
 
+  const pop = props.navi;
+
   useEffect(() => {
     // Update the document title using the browser API
     // let array = props.datagarden.data;
@@ -151,18 +153,27 @@ const CustomFlatList_Home = (props) => {
         </View>
       </View>
 
-      <View style={styles.tail}>
+      <TouchableOpacity style={styles.tail}
+            //   onPress={() => {
+            // props.navi.navigate("แก้ไข", {
+            //   dataplant: props.dataplant,
+            //   email: props.email,
+            // });
+            // }}
+      >
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
             marginTop: 5,
           }}
+
+  
         >
           <Ionicons size={25} color="#FFF" name="options" />
           <Text style={textStyle.display_flat_edit}>แก้ไข</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 
