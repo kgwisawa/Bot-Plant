@@ -46,11 +46,12 @@ export default StyleSheet.create({
   // ? FlatList_component -> Home ? //
   title_flat: {
     fontFamily: "Opun_Regular",
-    fontSize: 18,
+    fontSize: 20,
+    // marginTop:-10
   },
   title_flat_type: {
     fontFamily: "Opun_Regular",
-    fontSize: 10,
+    fontSize: 12,
     marginTop: -13,
   },
   title_flat_dashboard: {
@@ -60,7 +61,7 @@ export default StyleSheet.create({
   },
   display_flat: {
     fontFamily: "HAIDUO1T",
-    fontSize: 12,
+    fontSize: 10,
     color: "#FFF",
   },
   display_flat_edit: {
@@ -69,5 +70,43 @@ export default StyleSheet.create({
     marginTop: -5,
     color: "#FFF",
   },
+
+  adddate:{
+  
+    fontFamily: "HAIDUO1T",
+    fontSize: 15,
+    color: "#FFF",
+    marginLeft:5
+  },
+  add_photo:{
+    fontFamily: "Opun_Regular",
+    fontSize: 15,
+    color: "#FFF"
+    ,marginLeft:5
+  },
+  add_status:{
+    fontFamily: "Opun_Regular",
+    fontSize: 20,
+    color: "#FFF"
+   
+  },
+  addbt:{
+    fontFamily: "Opun_Regular",
+    fontSize: 20,
+    color: "#FFF"
+    ,marginLeft:5
+  }
+
+  ,store_title:{
+    fontFamily: "Opun_Regular",
+    fontSize: 18,
+    marginLeft:10
+  },
+  title_shop_ct:{
+    fontFamily: "Opun_Regular",
+    fontSize: 18,
+    marginLeft:5
+  }
+
 });
 1;

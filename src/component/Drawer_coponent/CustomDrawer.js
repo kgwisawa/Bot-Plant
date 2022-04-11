@@ -47,7 +47,7 @@ const CustomDrawer = (props) => {
   useEffect(() => {
     // Update the document title using the browser API
     getinfo_firebase();
-  });
+  },[]);
 
   const getinfo_firebase = () => {
     const myDoc = doc(db, "User", props.email);

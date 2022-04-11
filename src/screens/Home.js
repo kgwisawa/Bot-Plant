@@ -1,17 +1,105 @@
-import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, SafeAreaView, Image ,ActivityIndicator } from "react-native";
+import React ,{useState ,useEffect} from "react";
 import textStyle from "../style/text-style";
+
 
 import CustomFlatList_Home from "../component/FlatList_component/CustomFlatList_Home";
 
-const Home = ({ navigation, route }) => {
+
+
+import { db } from "../service/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+const Home = ({ route,navigation }) => {
+
+  const [garden_data,setgarden_data] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  const [dataplant, setdataplant] = useState([]);
+
+
+  function getplant_firebase() {
+    const myDoc = doc(db, "Plant", "cactus");
+    getDoc(myDoc)
+      // Handling Promises
+      .then((snapshot) => {
+        // MARK: Success
+        if (snapshot.exists) {
+          setdataplant(snapshot.data().data)
+          setLoading2(false)
+          // console.log("dataplant "+ snapshot.data().data)
+        } else {
+          alert("No Doc Found");
+        }
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message);
+      });
+  };
+
+  function get_garden_firebase () {
+ 
+    const myDoc = doc(db, "User", route.params.email ,"Garden","detail");
+    getDoc(myDoc)
+      // Handling Promises
+      .then((snapshot) => {
+        // MARK: Success
+        if (snapshot.exists) {
+         setgarden_data(snapshot.data())
+         setLoading(false);
+         
+        } else {
+          alert("No Doc Found");
+        }
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message);
+      });
+
+  };
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    get_garden_firebase ();
+    getplant_firebase();
+    
+    // alert("w")
+  },[]);
+
+  if (loading && loading2) {
+    return (
+      <SafeAreaView style={styles.content}>
+      <View style={styles.screen}>
+        <View style={styles.title}>
+          <View style={styles.left_title}>
+            <Text style={[textStyle.title]}>Welcome to</Text>
+            <Text style={[textStyle.title_detail]}>your garden </Text>
+          </View>
+          <View style={styles.rigth_title}>
+            <Image
+              style={styles.Logo}
+              source={require("../../assets/icon/icon_drawer/logo_botplant.png")}
+            />
+          </View>
+        </View>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={"large"} />
+      </View>
+          </View>
+      </SafeAreaView>
+
+    );
+  }
   return (
+
     <SafeAreaView style={styles.content}>
     <View style={styles.screen}>
       <View style={styles.title}>
         <View style={styles.left_title}>
           <Text style={[textStyle.title]}>Welcome to</Text>
-          <Text style={[textStyle.title_detail]}>your garden</Text>
+          <Text style={[textStyle.title_detail]}>your garden </Text>
         </View>
         <View style={styles.rigth_title}>
           <Image
@@ -21,9 +109,10 @@ const Home = ({ navigation, route }) => {
         </View>
       </View>
       
-        <CustomFlatList_Home/>
+        <CustomFlatList_Home datagarden={garden_data} navi={navigation} dataplant={dataplant} email={route.params.email}/>
         </View>
     </SafeAreaView>
+ 
   );
 };
 
