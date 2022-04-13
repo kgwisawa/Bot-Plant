@@ -1,4 +1,4 @@
-import { View, Text ,SafeAreaView,Image,StyleSheet} from 'react-native'
+import { View, Text ,SafeAreaView,Image,StyleSheet,ScrollView} from 'react-native'
 import textStyle from '../style/text-style'
 import React from 'react'
 import Entypo from "react-native-vector-icons/Entypo";
@@ -7,6 +7,7 @@ import CustomFlatList_Store from '../component/FlatList_component/CustomFlatList
 const Store = () => {
   return (
     <SafeAreaView style={styles.content}>
+    
     <View style={styles.screen}>
       <View style={styles.title}>
         <View style={styles.left_title}>
@@ -21,8 +22,11 @@ const Store = () => {
           />
         </View>
       </View>
+  
                 <CustomFlatList_Store/>
+      
         </View>
+       
     </SafeAreaView>
   )
 }

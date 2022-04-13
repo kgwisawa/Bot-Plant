@@ -9,12 +9,16 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Linking
+  Linking,
+  ScrollView,
+  Modal
 } from "react-native";
 import textStyle from "../../style/text-style";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
 import Entypo from "react-native-vector-icons/Entypo";
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 
 const CustomFlatList_Store = (props) => {
   const [filterAData, setfilterAData] = useState(filter);
@@ -23,6 +27,8 @@ const CustomFlatList_Store = (props) => {
   const [masterBData, setmasterBData] = useState(filter2);
   const [search, setsearch] = useState("");
   const [data, setdata] = useState([]);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const seachFilter = (text) => {
     if (text) {
@@ -43,6 +49,7 @@ const CustomFlatList_Store = (props) => {
     if (text) {
         const newData = masterBData.filter((item) => {
           const itemData = item.title ? item.title.toUpperCase() : "".toUpperCase();
+          
           const textData = text.toUpperCase();
           return itemData.indexOf(textData) > -1;
         });
@@ -341,7 +348,9 @@ const CustomFlatList_Store = (props) => {
   };
 
   const rendershopA = ({ item }) => {
+
     return <ShopA title={item} />;
+    
   };
 
   const rendershopB = ({ item }) => {
@@ -357,10 +366,32 @@ const CustomFlatList_Store = (props) => {
         backgroundColor: "#FFF",
       }}
     >
+          <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+          <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>ยกเลิก</Text>
+            </TouchableOpacity>
+          </View>
+          </View>
+          </Modal>
+    <View style={{width:'100%', height:80,flexDirection:'row'}}>
       <View
         style={{
           height: 80,
-          width: "100%",
+          width: "80%",
           alignItems: "center",
           padding: 15,
           flexDirection: "row",
@@ -390,18 +421,31 @@ const CustomFlatList_Store = (props) => {
         />
       </View>
 
-      <View style={{ width: "100%", height: "88%" }}>
-        <View style={{ width: "100%", height: "50%" }}>
+<View style={{width:"20%", height:"100%",justifyContent:'center',alignItems:'center'}}>
+  <TouchableOpacity style={{width:"70%", height:50,backgroundColor:'#5ca78c',borderRadius:10,marginTop:10,justifyContent:'center',alignItems:'center'}}
+  
+  onPress={() => setModalVisible(!modalVisible)}>
+        <AntDesign size={35} color="#FFF" name="bars" />
+  </TouchableOpacity>
+</View>
+
+
+</View>
+<ScrollView >
+      <View style={{ width: "100%", height: 630 }}>
+        <View style={{ width: "100%", height: 315 }}>
           <Text style={textStyle.store_title}>ร้านขายต้นไม้</Text>
 
+          {/* <View style={{width:"100%",height:300}}> */}
           <FlatList
             data={filterAData}
             horizontal
             renderItem={rendershopA}
             keyExtractor={(item) => item.name}
           />
+         
         </View>
-        <View style={{ width: "100%", height: "50%" }}>
+        <View style={{ width: "100%", height: 315 }}>
           <Text style={textStyle.store_title}>ร้านขายอุปกรณ์ปลูก</Text>
           <FlatList
             data={filterBData}
@@ -411,7 +455,9 @@ const CustomFlatList_Store = (props) => {
           />
         </View>
       </View>
+      </ScrollView>
     </View>
+  
   );
 };
 
@@ -606,6 +652,31 @@ const styles = StyleSheet.create({
     borderRadius:10,
     flexDirection:'row',
     marginLeft:5
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(85,85,85,0.7)",
+    marginTop: 0
+  },
+  modalView: {
+    width:'95%',
+    height:'50%',
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    paddingHorizontal:0,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5
   },
   logo_tack:{width:15,height:15,borderRadius:20,justifyContent:'center',alignItems:'center'}
 });
