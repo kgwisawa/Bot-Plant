@@ -27,6 +27,7 @@ const CustomFlatList_Store = (props) => {
   const [masterBData, setmasterBData] = useState(filter2);
   const [search, setsearch] = useState("");
   const [data, setdata] = useState([]);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -377,6 +378,7 @@ const CustomFlatList_Store = (props) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+
 
           <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
